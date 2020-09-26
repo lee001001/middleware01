@@ -9,9 +9,20 @@ app.set('view engine', 'hbs')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// 設定首頁路由
 app.get('/', (req, res) => {
-  res.render('Hello')
+  res.send('列出全部 Todo')
+})
+
+app.get('/new', (req, res) => {
+  res.send('新增 Todo 頁面')
+})
+
+app.get('/:id', (req, res) => {
+  res.send('顯示一筆 Todo')
+})
+
+app.post('/', (req, res) => {
+  res.send('新增一筆  Todo')
 })
 
 // 設定 port 3000
