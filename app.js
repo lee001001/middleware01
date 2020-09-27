@@ -10,31 +10,26 @@ app.set('view engine', 'hbs')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.get('/', (req, res) => {
+app.use(function (req, res, next) {
   const reqMethod = req.method
   const reqUrl = req.url
   console.log(`${timestamp('YYYY-MM-DD HH:mm:ss')} ${reqMethod}  from ${reqUrl}`)
+  next()
+})
+
+app.get('/', (req, res) => {
   res.send('列出全部 Todo')
 })
 
 app.get('/new', (req, res) => {
-  const reqMethod = req.method
-  const reqUrl = req.url
-  console.log(`${timestamp('YYYY-MM-DD HH:mm:ss')} ${reqMethod}  from ${reqUrl}`)
   res.send('新增 Todo 頁面')
 })
 
 app.get('/:id', (req, res) => {
-  const reqMethod = req.method
-  const reqUrl = req.url
-  console.log(`${timestamp('YYYY-MM-DD HH:mm:ss')} ${reqMethod}  from ${reqUrl}`)
   res.send('顯示一筆 Todo')
 })
 
 app.post('/', (req, res) => {
-  const reqMethod = req.method
-  const reqUrl = req.url
-  console.log(`${timestamp('YYYY-MM-DD HH:mm:ss')} ${reqMethod}  from ${reqUrl}`)
   res.send('新增一筆  Todo')
 })
 
